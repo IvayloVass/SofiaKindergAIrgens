@@ -11,9 +11,13 @@ The data comes from the public portal [kg.sofia.bg](https://kg.sofia.bg/#/kinder
   - a donut chart of kindergarten types,
   - kindergartens per district (click a bar to add or remove that district from the filter).
 - The filter state lives in the URL, so links can be shared. Light and dark mode follow the OS setting.
-
-> The official ranking ("класиране") isn't published on the source yet (its API returns `noRatings: true`), so the app
-> shows the kindergarten list. The app shows a notice about this.
+- **A detail page for every kindergarten** (`/kindergarten/:id`, opened by clicking a card):
+  - director, phones, email, website, map and a link to the official page,
+  - free / enrolled places per group, with a chart comparing the groups,
+  - **rankings ("класиране")** for each group and ranking date: ranked, not ranked and pre-ranking lists, the enrolment period and the lowest ranked points,
+  - the **waiting list** with a points chart,
+  - "find my child" by application number (highlights the child and shows their place),
+  - the kindergarten's information for parents.
 
 ## Requirements
 
@@ -44,7 +48,7 @@ An npm workspaces monorepo with four modules:
 ```
 database/   SQLite schema and data access (built-in node:sqlite, no dependencies)
 backend/    Node HTTP API + sync job (built-in node:http and fetch, no dependencies)
-frontend/   React + Bootstrap + Chart.js SPA, built with Vite
+frontend/   React + Bootstrap + Chart.js SPA, built with Vite (pages/, components/, a tiny router in router.jsx)
 tests/      Vitest suites for each module, plus fixtures captured from the real source
 scripts/    dev.js runs backend and frontend side by side
 ```
@@ -57,6 +61,8 @@ The source API blocks requests from other websites (CORS), so the browser can't 
 2. merges them into clean records (`backend/src/normalize.js`),
 3. stores them in SQLite (`database/src/index.js`),
 4. refreshes every 24 hours, and keeps serving the last good data if the source is down (`backend/src/sync.js`).
+5. fetches detail pages, waiting lists and rankings on demand, caches them in SQLite (6h / 1h / 6h) and serves the cached copy if the source is down (`backend/src/kindergartenService.js`, `backend/src/cache.js`). Group and ranking ids are checked against the kindergarten, so the API can't be used as an open proxy.
+6. cleans the "info for parents" HTML with a small allow-list sanitizer (`backend/src/sanitize.js`) before it reaches the browser.
 
 ### API
 
@@ -64,13 +70,21 @@ The source API blocks requests from other websites (CORS), so the browser can't 
 | --- | --- |
 | `GET /api/kindergartens[?region=<id>]` | `[{ id, name, type, regionId, regionName, address, phones[], hasNursery, hasKindergarten, hasPreparatory }]` |
 | `GET /api/regions` | `[{ id, name, count }]` |
-| `GET /api/meta` | `{ lastSyncedAt, source, rankingsPublished }` |
+| `GET /api/meta` | `{ lastSyncedAt, source }` |
+| `GET /api/kindergartens/:id` | Details: director, contacts, groups with places per quota, ranking dates, info for parents |
+| `GET /api/kindergartens/:id/groups/:groupId/waiting` | Waiting lists per quota (initials, application number, points) |
+| `GET /api/kindergartens/:id/groups/:groupId/rankings/:ratingId` | One ranking: `entry`, `rated`, `notRated` lists with sections and entries |
 | `GET /api/health` | `{ status: "ok" }` |
 
 ### Source endpoints used
 
 - `https://kg.sofia.bg/api/nomenclature/regions`
 - `https://kg.sofia.bg/api/public/kg/type/kinderGarden/{all|nursery|otherGroups|preparative}?filterType=by_region&kgType=0&regionId=0`
+- `https://kg.sofia.bg/api/public/0/dz/{id}` (details)
+- `https://kg.sofia.bg/api/stat-rating/waiting/{groupId}` (waiting list, JSON)
+- `https://kg.sofia.bg/api/stat-rating/{entry|rated|not-rated}/{ratingId}/{groupId}` (rankings, HTML tables parsed in `backend/src/details.js`)
+
+Ranking and waiting lists show only initials, application number and points — exactly as the municipality publishes them.
 
 ## Dependencies
 

@@ -23,3 +23,10 @@ CREATE TABLE IF NOT EXISTS meta (
   key   TEXT PRIMARY KEY,
   value TEXT
 );
+
+-- Responses fetched on demand (kindergarten details, waiting lists, rankings), stored as JSON.
+CREATE TABLE IF NOT EXISTS cache (
+  key        TEXT PRIMARY KEY,
+  data       TEXT    NOT NULL,
+  fetched_at INTEGER NOT NULL -- epoch milliseconds
+);

@@ -2,10 +2,16 @@ import '@testing-library/jest-dom/vitest';
 import { afterEach, vi } from 'vitest';
 import { cleanup } from '@testing-library/react';
 
-afterEach(() => {
+afterEach(async () => {
   cleanup();
   window.history.replaceState(null, '', '/');
+  const { clearApiMemory } = await import('../../frontend/src/hooks/useApi.js');
+  clearApiMemory();
 });
+
+// Browser APIs that jsdom doesn't implement.
+window.scrollTo = () => {};
+Element.prototype.scrollIntoView = () => {};
 
 // jsdom has no matchMedia.
 if (!window.matchMedia) {

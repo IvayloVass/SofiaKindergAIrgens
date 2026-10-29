@@ -2,7 +2,7 @@ import { GROUP_LISTS, SOURCE_BASE_URL } from './config.js';
 
 const TIMEOUT_MS = 30_000;
 
-async function getJson(fetchImpl, path) {
+export async function getJson(fetchImpl, path) {
   const res = await fetchImpl(`${SOURCE_BASE_URL}${path}`, {
     headers: {
       Accept: 'application/json',
@@ -33,4 +33,22 @@ export async function fetchSourceData(fetchImpl = fetch) {
     GROUP_LISTS.map((group, i) => [group, lists[i]?.items?.kinderGardens ?? []]),
   );
   return { regions, groups };
+}
+
+/** Raw detail page data for one kindergarten (`items` of the response). */
+export async function fetchKindergartenDetail(id, fetchImpl = fetch) {
+  return (await getJson(fetchImpl, `/public/0/dz/${Number(id)}`)).items;
+}
+
+/** Raw waiting list for one group (`items` of the response). */
+export async function fetchWaitingList(groupId, fetchImpl = fetch) {
+  return (await getJson(fetchImpl, `/stat-rating/waiting/${Number(groupId)}`)).items;
+}
+
+/**
+ * One ranking list as HTML. `stage` is one of:
+ * entry (before ranking), rated (ranked), not-rated (not ranked).
+ */
+export async function fetchRatingHtml(stage, ratingId, groupId, fetchImpl = fetch) {
+  return (await getJson(fetchImpl, `/stat-rating/${stage}/${Number(ratingId)}/${Number(groupId)}`)).content ?? '';
 }
