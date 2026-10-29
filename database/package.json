@@ -1,0 +1,11 @@
+{
+  "name": "@kg/database",
+  "version": "1.0.0",
+  "private": true,
+  "description": "SQLite storage for Sofia kindergartens (uses the built-in node:sqlite module).",
+  "type": "module",
+  "main": "src/index.js",
+  "exports": {
+    ".": "./src/index.js"
+  }
+}

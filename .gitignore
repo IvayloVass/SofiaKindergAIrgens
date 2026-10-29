@@ -426,3 +426,12 @@ FodyWeavers.xsd
 
 # Official VS Code C# Dev Kit Extension exclusion
 #*.lscache
+
+# Sofia Kindergartens app
+backend/data/
+*.db
+*.db-journal
+*.db-wal
+*.db-shm
+frontend/dist/
+coverage/

@@ -1,0 +1,16 @@
+{
+  "name": "@kg/backend",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Small Node API that syncs kindergarten data from kg.sofia.bg into SQLite and serves it.",
+  "type": "module",
+  "main": "src/index.js",
+  "scripts": {
+    "dev": "node --watch src/index.js",
+    "start": "node src/index.js",
+    "sync": "node src/sync.js --force"
+  },
+  "dependencies": {
+    "@kg/database": "1.0.0"
+  }
+}

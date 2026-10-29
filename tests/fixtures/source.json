@@ -1,0 +1,1161 @@
+{
+  "regions": [
+    {
+      "id": "03",
+      "label": "Възраждане"
+    },
+    {
+      "id": "19",
+      "label": "Люлин"
+    },
+    {
+      "id": "15",
+      "label": "Младост"
+    },
+    {
+      "id": "01",
+      "label": "Средец"
+    }
+  ],
+  "groups": {
+    "all": [
+      {
+        "id": 171,
+        "name": {
+          "publicName": "ДГ №1 Червената шапчица (с яслени групи)",
+          "publicType": "ДГ (с яслени групи)"
+        },
+        "nameStr": "ДГ №1 Червената шапчица (с яслени групи)",
+        "address": "гр. София, ул. \"Брегалница\", №48",
+        "phone": null,
+        "region": "Възраждане",
+        "regionObj": null,
+        "directorName": null,
+        "directorFamily": null,
+        "contacts": [
+          {
+            "id": null,
+            "typeCommunication": {
+              "id": 2,
+              "komunikacias": [],
+              "label": "business"
+            },
+            "kindCommunication": {
+              "id": 2,
+              "komunikacias": [],
+              "label": "phone"
+            },
+            "fieldValue": "02/831 70 17"
+          }
+        ],
+        "addressStructured": null,
+        "studyMode": null,
+        "esriId": 171
+      },
+      {
+        "id": 242,
+        "name": {
+          "publicName": "СДЯ №1 ",
+          "publicType": "СДЯ"
+        },
+        "nameStr": "СДЯ №1 ",
+        "address": "гр. София, ул. \"Хан Крум\", №23",
+        "phone": null,
+        "region": "Средец",
+        "regionObj": null,
+        "directorName": null,
+        "directorFamily": null,
+        "contacts": [
+          {
+            "id": null,
+            "typeCommunication": {
+              "id": 2,
+              "komunikacias": [],
+              "label": "business"
+            },
+            "kindCommunication": {
+              "id": 2,
+              "komunikacias": [],
+              "label": "phone"
+            },
+            "fieldValue": " 0889040084"
+          }
+        ],
+        "addressStructured": null,
+        "studyMode": null,
+        "esriId": 242
+      },
+      {
+        "id": 92,
+        "name": {
+          "publicName": "ДГ №11 Мики Маус (с яслени групи)",
+          "publicType": "ДГ (с яслени групи)"
+        },
+        "nameStr": "ДГ №11 Мики Маус (с яслени групи)",
+        "address": "гр. София, ж.к. \"Младост 1\" до бл.18",
+        "phone": null,
+        "region": "Младост",
+        "regionObj": null,
+        "directorName": null,
+        "directorFamily": null,
+        "contacts": [
+          {
+            "id": null,
+            "typeCommunication": {
+              "id": 2,
+              "komunikacias": [],
+              "label": "business"
+            },
+            "kindCommunication": {
+              "id": 2,
+              "komunikacias": [],
+              "label": "phone"
+            },
+            "fieldValue": "02/874 20 41"
+          },
+          {
+            "id": null,
+            "typeCommunication": {
+              "id": 2,
+              "komunikacias": [],
+              "label": "business"
+            },
+            "kindCommunication": {
+              "id": 2,
+              "komunikacias": [],
+              "label": "phone"
+            },
+            "fieldValue": "02/874 90 89"
+          }
+        ],
+        "addressStructured": null,
+        "studyMode": null,
+        "esriId": 92
+      },
+      {
+        "id": 74,
+        "name": {
+          "publicName": "ДГ №14 Карлсон (с яслени групи)",
+          "publicType": "ДГ (с яслени групи)"
+        },
+        "nameStr": "ДГ №14 Карлсон (с яслени групи)",
+        "address": "гр. София,  ул. \"Васил Карагьозов\", №8",
+        "phone": null,
+        "region": "Младост",
+        "regionObj": null,
+        "directorName": null,
+        "directorFamily": null,
+        "contacts": [],
+        "addressStructured": null,
+        "studyMode": null,
+        "esriId": 74
+      },
+      {
+        "id": 17,
+        "name": {
+          "publicName": "ДГ №22 Великденче (с яслени групи)",
+          "publicType": "ДГ (с яслени групи)"
+        },
+        "nameStr": "ДГ №22 Великденче (с яслени групи)",
+        "address": "гр. София, ул. 210 № 27 - II м. р.  ",
+        "phone": null,
+        "region": "Люлин",
+        "regionObj": null,
+        "directorName": null,
+        "directorFamily": null,
+        "contacts": [
+          {
+            "id": null,
+            "typeCommunication": {
+              "id": 2,
+              "komunikacias": [],
+              "label": "business"
+            },
+            "kindCommunication": {
+              "id": 2,
+              "komunikacias": [],
+              "label": "phone"
+            },
+            "fieldValue": "02/824 11 70"
+          },
+          {
+            "id": null,
+            "typeCommunication": {
+              "id": 2,
+              "komunikacias": [],
+              "label": "business"
+            },
+            "kindCommunication": {
+              "id": 2,
+              "komunikacias": [],
+              "label": "phone"
+            },
+            "fieldValue": "02/825 88 66"
+          }
+        ],
+        "addressStructured": null,
+        "studyMode": null,
+        "esriId": 17
+      },
+      {
+        "id": 83,
+        "name": {
+          "publicName": "ДГ №31 Люлин (с яслени групи)",
+          "publicType": "ДГ (с яслени групи)"
+        },
+        "nameStr": "ДГ №31 Люлин (с яслени групи)",
+        "address": "гр. София, ул. 208 № 17 - II м. р.  ",
+        "phone": null,
+        "region": "Люлин",
+        "regionObj": null,
+        "directorName": null,
+        "directorFamily": null,
+        "contacts": [
+          {
+            "id": null,
+            "typeCommunication": {
+              "id": 2,
+              "komunikacias": [],
+              "label": "business"
+            },
+            "kindCommunication": {
+              "id": 2,
+              "komunikacias": [],
+              "label": "phone"
+            },
+            "fieldValue": "02/824 52 73"
+          }
+        ],
+        "addressStructured": null,
+        "studyMode": null,
+        "esriId": 83
+      },
+      {
+        "id": 265,
+        "name": {
+          "publicName": "СДЯ №41 Ябълкова градина",
+          "publicType": "СДЯ"
+        },
+        "nameStr": "СДЯ №41 Ябълкова градина",
+        "address": "гр. София, жк.Люлин, І микрорайон, ул.\"Фортов път\" №1",
+        "phone": null,
+        "region": "Люлин",
+        "regionObj": null,
+        "directorName": null,
+        "directorFamily": null,
+        "contacts": [
+          {
+            "id": null,
+            "typeCommunication": {
+              "id": 2,
+              "komunikacias": [],
+              "label": "business"
+            },
+            "kindCommunication": {
+              "id": 2,
+              "komunikacias": [],
+              "label": "phone"
+            },
+            "fieldValue": "02/824 62 05 "
+          }
+        ],
+        "addressStructured": null,
+        "studyMode": null,
+        "esriId": 265
+      },
+      {
+        "id": 51,
+        "name": {
+          "publicName": "ДГ №50 Зайчето Куики (с яслени групи)",
+          "publicType": "ДГ (с яслени групи)"
+        },
+        "nameStr": "ДГ №50 Зайчето Куики (с яслени групи)",
+        "address": "гр. София, кв. \"Зона Б-5\" ",
+        "phone": null,
+        "region": "Възраждане",
+        "regionObj": null,
+        "directorName": null,
+        "directorFamily": null,
+        "contacts": [
+          {
+            "id": null,
+            "typeCommunication": {
+              "id": 2,
+              "komunikacias": [],
+              "label": "business"
+            },
+            "kindCommunication": {
+              "id": 2,
+              "komunikacias": [],
+              "label": "phone"
+            },
+            "fieldValue": "02/822 91 41"
+          },
+          {
+            "id": null,
+            "typeCommunication": {
+              "id": 2,
+              "komunikacias": [],
+              "label": "business"
+            },
+            "kindCommunication": {
+              "id": 2,
+              "komunikacias": [],
+              "label": "phone"
+            },
+            "fieldValue": "02/829 26 70"
+          }
+        ],
+        "addressStructured": null,
+        "studyMode": null,
+        "esriId": 51
+      },
+      {
+        "id": 183,
+        "name": {
+          "publicName": "ДГ №119 Детска планета",
+          "publicType": "ДГ"
+        },
+        "nameStr": "ДГ №119 Детска планета",
+        "address": "гр. София, ул. \"Брегалница\", №26",
+        "phone": null,
+        "region": "Възраждане",
+        "regionObj": null,
+        "directorName": null,
+        "directorFamily": null,
+        "contacts": [
+          {
+            "id": null,
+            "typeCommunication": {
+              "id": 2,
+              "komunikacias": [],
+              "label": "business"
+            },
+            "kindCommunication": {
+              "id": 2,
+              "komunikacias": [],
+              "label": "phone"
+            },
+            "fieldValue": "0889580056"
+          }
+        ],
+        "addressStructured": null,
+        "studyMode": null,
+        "esriId": 183
+      }
+    ],
+    "nursery": [
+      {
+        "id": 171,
+        "name": {
+          "publicName": "ДГ №1 Червената шапчица (с яслени групи)",
+          "publicType": "ДГ (с яслени групи)"
+        },
+        "nameStr": "ДГ №1 Червената шапчица (с яслени групи)",
+        "address": "гр. София, ул. \"Брегалница\", №48",
+        "phone": null,
+        "region": "Възраждане",
+        "regionObj": null,
+        "directorName": null,
+        "directorFamily": null,
+        "contacts": [
+          {
+            "id": null,
+            "typeCommunication": {
+              "id": 2,
+              "komunikacias": [],
+              "label": "business"
+            },
+            "kindCommunication": {
+              "id": 2,
+              "komunikacias": [],
+              "label": "phone"
+            },
+            "fieldValue": "02/831 70 17"
+          }
+        ],
+        "addressStructured": null,
+        "studyMode": null,
+        "esriId": 171
+      },
+      {
+        "id": 242,
+        "name": {
+          "publicName": "СДЯ №1 ",
+          "publicType": "СДЯ"
+        },
+        "nameStr": "СДЯ №1 ",
+        "address": "гр. София, ул. \"Хан Крум\", №23",
+        "phone": null,
+        "region": "Средец",
+        "regionObj": null,
+        "directorName": null,
+        "directorFamily": null,
+        "contacts": [
+          {
+            "id": null,
+            "typeCommunication": {
+              "id": 2,
+              "komunikacias": [],
+              "label": "business"
+            },
+            "kindCommunication": {
+              "id": 2,
+              "komunikacias": [],
+              "label": "phone"
+            },
+            "fieldValue": " 0889040084"
+          }
+        ],
+        "addressStructured": null,
+        "studyMode": null,
+        "esriId": 242
+      },
+      {
+        "id": 92,
+        "name": {
+          "publicName": "ДГ №11 Мики Маус (с яслени групи)",
+          "publicType": "ДГ (с яслени групи)"
+        },
+        "nameStr": "ДГ №11 Мики Маус (с яслени групи)",
+        "address": "гр. София, ж.к. \"Младост 1\" до бл.18",
+        "phone": null,
+        "region": "Младост",
+        "regionObj": null,
+        "directorName": null,
+        "directorFamily": null,
+        "contacts": [
+          {
+            "id": null,
+            "typeCommunication": {
+              "id": 2,
+              "komunikacias": [],
+              "label": "business"
+            },
+            "kindCommunication": {
+              "id": 2,
+              "komunikacias": [],
+              "label": "phone"
+            },
+            "fieldValue": "02/874 20 41"
+          },
+          {
+            "id": null,
+            "typeCommunication": {
+              "id": 2,
+              "komunikacias": [],
+              "label": "business"
+            },
+            "kindCommunication": {
+              "id": 2,
+              "komunikacias": [],
+              "label": "phone"
+            },
+            "fieldValue": "02/874 90 89"
+          }
+        ],
+        "addressStructured": null,
+        "studyMode": null,
+        "esriId": 92
+      },
+      {
+        "id": 74,
+        "name": {
+          "publicName": "ДГ №14 Карлсон (с яслени групи)",
+          "publicType": "ДГ (с яслени групи)"
+        },
+        "nameStr": "ДГ №14 Карлсон (с яслени групи)",
+        "address": "гр. София,  ул. \"Васил Карагьозов\", №8",
+        "phone": null,
+        "region": "Младост",
+        "regionObj": null,
+        "directorName": null,
+        "directorFamily": null,
+        "contacts": [],
+        "addressStructured": null,
+        "studyMode": null,
+        "esriId": 74
+      },
+      {
+        "id": 17,
+        "name": {
+          "publicName": "ДГ №22 Великденче (с яслени групи)",
+          "publicType": "ДГ (с яслени групи)"
+        },
+        "nameStr": "ДГ №22 Великденче (с яслени групи)",
+        "address": "гр. София, ул. 210 № 27 - II м. р.  ",
+        "phone": null,
+        "region": "Люлин",
+        "regionObj": null,
+        "directorName": null,
+        "directorFamily": null,
+        "contacts": [
+          {
+            "id": null,
+            "typeCommunication": {
+              "id": 2,
+              "komunikacias": [],
+              "label": "business"
+            },
+            "kindCommunication": {
+              "id": 2,
+              "komunikacias": [],
+              "label": "phone"
+            },
+            "fieldValue": "02/824 11 70"
+          },
+          {
+            "id": null,
+            "typeCommunication": {
+              "id": 2,
+              "komunikacias": [],
+              "label": "business"
+            },
+            "kindCommunication": {
+              "id": 2,
+              "komunikacias": [],
+              "label": "phone"
+            },
+            "fieldValue": "02/825 88 66"
+          }
+        ],
+        "addressStructured": null,
+        "studyMode": null,
+        "esriId": 17
+      },
+      {
+        "id": 83,
+        "name": {
+          "publicName": "ДГ №31 Люлин (с яслени групи)",
+          "publicType": "ДГ (с яслени групи)"
+        },
+        "nameStr": "ДГ №31 Люлин (с яслени групи)",
+        "address": "гр. София, ул. 208 № 17 - II м. р.  ",
+        "phone": null,
+        "region": "Люлин",
+        "regionObj": null,
+        "directorName": null,
+        "directorFamily": null,
+        "contacts": [
+          {
+            "id": null,
+            "typeCommunication": {
+              "id": 2,
+              "komunikacias": [],
+              "label": "business"
+            },
+            "kindCommunication": {
+              "id": 2,
+              "komunikacias": [],
+              "label": "phone"
+            },
+            "fieldValue": "02/824 52 73"
+          }
+        ],
+        "addressStructured": null,
+        "studyMode": null,
+        "esriId": 83
+      },
+      {
+        "id": 265,
+        "name": {
+          "publicName": "СДЯ №41 Ябълкова градина",
+          "publicType": "СДЯ"
+        },
+        "nameStr": "СДЯ №41 Ябълкова градина",
+        "address": "гр. София, жк.Люлин, І микрорайон, ул.\"Фортов път\" №1",
+        "phone": null,
+        "region": "Люлин",
+        "regionObj": null,
+        "directorName": null,
+        "directorFamily": null,
+        "contacts": [
+          {
+            "id": null,
+            "typeCommunication": {
+              "id": 2,
+              "komunikacias": [],
+              "label": "business"
+            },
+            "kindCommunication": {
+              "id": 2,
+              "komunikacias": [],
+              "label": "phone"
+            },
+            "fieldValue": "02/824 62 05 "
+          }
+        ],
+        "addressStructured": null,
+        "studyMode": null,
+        "esriId": 265
+      },
+      {
+        "id": 51,
+        "name": {
+          "publicName": "ДГ №50 Зайчето Куики (с яслени групи)",
+          "publicType": "ДГ (с яслени групи)"
+        },
+        "nameStr": "ДГ №50 Зайчето Куики (с яслени групи)",
+        "address": "гр. София, кв. \"Зона Б-5\" ",
+        "phone": null,
+        "region": "Възраждане",
+        "regionObj": null,
+        "directorName": null,
+        "directorFamily": null,
+        "contacts": [
+          {
+            "id": null,
+            "typeCommunication": {
+              "id": 2,
+              "komunikacias": [],
+              "label": "business"
+            },
+            "kindCommunication": {
+              "id": 2,
+              "komunikacias": [],
+              "label": "phone"
+            },
+            "fieldValue": "02/822 91 41"
+          },
+          {
+            "id": null,
+            "typeCommunication": {
+              "id": 2,
+              "komunikacias": [],
+              "label": "business"
+            },
+            "kindCommunication": {
+              "id": 2,
+              "komunikacias": [],
+              "label": "phone"
+            },
+            "fieldValue": "02/829 26 70"
+          }
+        ],
+        "addressStructured": null,
+        "studyMode": null,
+        "esriId": 51
+      }
+    ],
+    "otherGroups": [
+      {
+        "id": 171,
+        "name": {
+          "publicName": "ДГ №1 Червената шапчица (с яслени групи)",
+          "publicType": "ДГ (с яслени групи)"
+        },
+        "nameStr": "ДГ №1 Червената шапчица (с яслени групи)",
+        "address": "гр. София, ул. \"Брегалница\", №48",
+        "phone": null,
+        "region": "Възраждане",
+        "regionObj": null,
+        "directorName": null,
+        "directorFamily": null,
+        "contacts": [
+          {
+            "id": null,
+            "typeCommunication": {
+              "id": 2,
+              "komunikacias": [],
+              "label": "business"
+            },
+            "kindCommunication": {
+              "id": 2,
+              "komunikacias": [],
+              "label": "phone"
+            },
+            "fieldValue": "02/831 70 17"
+          }
+        ],
+        "addressStructured": null,
+        "studyMode": null,
+        "esriId": 171
+      },
+      {
+        "id": 92,
+        "name": {
+          "publicName": "ДГ №11 Мики Маус (с яслени групи)",
+          "publicType": "ДГ (с яслени групи)"
+        },
+        "nameStr": "ДГ №11 Мики Маус (с яслени групи)",
+        "address": "гр. София, ж.к. \"Младост 1\" до бл.18",
+        "phone": null,
+        "region": "Младост",
+        "regionObj": null,
+        "directorName": null,
+        "directorFamily": null,
+        "contacts": [
+          {
+            "id": null,
+            "typeCommunication": {
+              "id": 2,
+              "komunikacias": [],
+              "label": "business"
+            },
+            "kindCommunication": {
+              "id": 2,
+              "komunikacias": [],
+              "label": "phone"
+            },
+            "fieldValue": "02/874 20 41"
+          },
+          {
+            "id": null,
+            "typeCommunication": {
+              "id": 2,
+              "komunikacias": [],
+              "label": "business"
+            },
+            "kindCommunication": {
+              "id": 2,
+              "komunikacias": [],
+              "label": "phone"
+            },
+            "fieldValue": "02/874 90 89"
+          }
+        ],
+        "addressStructured": null,
+        "studyMode": null,
+        "esriId": 92
+      },
+      {
+        "id": 74,
+        "name": {
+          "publicName": "ДГ №14 Карлсон (с яслени групи)",
+          "publicType": "ДГ (с яслени групи)"
+        },
+        "nameStr": "ДГ №14 Карлсон (с яслени групи)",
+        "address": "гр. София,  ул. \"Васил Карагьозов\", №8",
+        "phone": null,
+        "region": "Младост",
+        "regionObj": null,
+        "directorName": null,
+        "directorFamily": null,
+        "contacts": [],
+        "addressStructured": null,
+        "studyMode": null,
+        "esriId": 74
+      },
+      {
+        "id": 17,
+        "name": {
+          "publicName": "ДГ №22 Великденче (с яслени групи)",
+          "publicType": "ДГ (с яслени групи)"
+        },
+        "nameStr": "ДГ №22 Великденче (с яслени групи)",
+        "address": "гр. София, ул. 210 № 27 - II м. р.  ",
+        "phone": null,
+        "region": "Люлин",
+        "regionObj": null,
+        "directorName": null,
+        "directorFamily": null,
+        "contacts": [
+          {
+            "id": null,
+            "typeCommunication": {
+              "id": 2,
+              "komunikacias": [],
+              "label": "business"
+            },
+            "kindCommunication": {
+              "id": 2,
+              "komunikacias": [],
+              "label": "phone"
+            },
+            "fieldValue": "02/824 11 70"
+          },
+          {
+            "id": null,
+            "typeCommunication": {
+              "id": 2,
+              "komunikacias": [],
+              "label": "business"
+            },
+            "kindCommunication": {
+              "id": 2,
+              "komunikacias": [],
+              "label": "phone"
+            },
+            "fieldValue": "02/825 88 66"
+          }
+        ],
+        "addressStructured": null,
+        "studyMode": null,
+        "esriId": 17
+      },
+      {
+        "id": 83,
+        "name": {
+          "publicName": "ДГ №31 Люлин (с яслени групи)",
+          "publicType": "ДГ (с яслени групи)"
+        },
+        "nameStr": "ДГ №31 Люлин (с яслени групи)",
+        "address": "гр. София, ул. 208 № 17 - II м. р.  ",
+        "phone": null,
+        "region": "Люлин",
+        "regionObj": null,
+        "directorName": null,
+        "directorFamily": null,
+        "contacts": [
+          {
+            "id": null,
+            "typeCommunication": {
+              "id": 2,
+              "komunikacias": [],
+              "label": "business"
+            },
+            "kindCommunication": {
+              "id": 2,
+              "komunikacias": [],
+              "label": "phone"
+            },
+            "fieldValue": "02/824 52 73"
+          }
+        ],
+        "addressStructured": null,
+        "studyMode": null,
+        "esriId": 83
+      },
+      {
+        "id": 51,
+        "name": {
+          "publicName": "ДГ №50 Зайчето Куики (с яслени групи)",
+          "publicType": "ДГ (с яслени групи)"
+        },
+        "nameStr": "ДГ №50 Зайчето Куики (с яслени групи)",
+        "address": "гр. София, кв. \"Зона Б-5\" ",
+        "phone": null,
+        "region": "Възраждане",
+        "regionObj": null,
+        "directorName": null,
+        "directorFamily": null,
+        "contacts": [
+          {
+            "id": null,
+            "typeCommunication": {
+              "id": 2,
+              "komunikacias": [],
+              "label": "business"
+            },
+            "kindCommunication": {
+              "id": 2,
+              "komunikacias": [],
+              "label": "phone"
+            },
+            "fieldValue": "02/822 91 41"
+          },
+          {
+            "id": null,
+            "typeCommunication": {
+              "id": 2,
+              "komunikacias": [],
+              "label": "business"
+            },
+            "kindCommunication": {
+              "id": 2,
+              "komunikacias": [],
+              "label": "phone"
+            },
+            "fieldValue": "02/829 26 70"
+          }
+        ],
+        "addressStructured": null,
+        "studyMode": null,
+        "esriId": 51
+      },
+      {
+        "id": 183,
+        "name": {
+          "publicName": "ДГ №119 Детска планета",
+          "publicType": "ДГ"
+        },
+        "nameStr": "ДГ №119 Детска планета",
+        "address": "гр. София, ул. \"Брегалница\", №26",
+        "phone": null,
+        "region": "Възраждане",
+        "regionObj": null,
+        "directorName": null,
+        "directorFamily": null,
+        "contacts": [
+          {
+            "id": null,
+            "typeCommunication": {
+              "id": 2,
+              "komunikacias": [],
+              "label": "business"
+            },
+            "kindCommunication": {
+              "id": 2,
+              "komunikacias": [],
+              "label": "phone"
+            },
+            "fieldValue": "0889580056"
+          }
+        ],
+        "addressStructured": null,
+        "studyMode": null,
+        "esriId": 183
+      }
+    ],
+    "preparative": [
+      {
+        "id": 171,
+        "name": {
+          "publicName": "ДГ №1 Червената шапчица (с яслени групи)",
+          "publicType": "ДГ (с яслени групи)"
+        },
+        "nameStr": "ДГ №1 Червената шапчица (с яслени групи)",
+        "address": "гр. София, ул. \"Брегалница\", №48",
+        "phone": null,
+        "region": "Възраждане",
+        "regionObj": null,
+        "directorName": null,
+        "directorFamily": null,
+        "contacts": [
+          {
+            "id": null,
+            "typeCommunication": {
+              "id": 2,
+              "komunikacias": [],
+              "label": "business"
+            },
+            "kindCommunication": {
+              "id": 2,
+              "komunikacias": [],
+              "label": "phone"
+            },
+            "fieldValue": "02/831 70 17"
+          }
+        ],
+        "addressStructured": null,
+        "studyMode": null,
+        "esriId": 171
+      },
+      {
+        "id": 92,
+        "name": {
+          "publicName": "ДГ №11 Мики Маус (с яслени групи)",
+          "publicType": "ДГ (с яслени групи)"
+        },
+        "nameStr": "ДГ №11 Мики Маус (с яслени групи)",
+        "address": "гр. София, ж.к. \"Младост 1\" до бл.18",
+        "phone": null,
+        "region": "Младост",
+        "regionObj": null,
+        "directorName": null,
+        "directorFamily": null,
+        "contacts": [
+          {
+            "id": null,
+            "typeCommunication": {
+              "id": 2,
+              "komunikacias": [],
+              "label": "business"
+            },
+            "kindCommunication": {
+              "id": 2,
+              "komunikacias": [],
+              "label": "phone"
+            },
+            "fieldValue": "02/874 20 41"
+          },
+          {
+            "id": null,
+            "typeCommunication": {
+              "id": 2,
+              "komunikacias": [],
+              "label": "business"
+            },
+            "kindCommunication": {
+              "id": 2,
+              "komunikacias": [],
+              "label": "phone"
+            },
+            "fieldValue": "02/874 90 89"
+          }
+        ],
+        "addressStructured": null,
+        "studyMode": null,
+        "esriId": 92
+      },
+      {
+        "id": 74,
+        "name": {
+          "publicName": "ДГ №14 Карлсон (с яслени групи)",
+          "publicType": "ДГ (с яслени групи)"
+        },
+        "nameStr": "ДГ №14 Карлсон (с яслени групи)",
+        "address": "гр. София,  ул. \"Васил Карагьозов\", №8",
+        "phone": null,
+        "region": "Младост",
+        "regionObj": null,
+        "directorName": null,
+        "directorFamily": null,
+        "contacts": [],
+        "addressStructured": null,
+        "studyMode": null,
+        "esriId": 74
+      },
+      {
+        "id": 17,
+        "name": {
+          "publicName": "ДГ №22 Великденче (с яслени групи)",
+          "publicType": "ДГ (с яслени групи)"
+        },
+        "nameStr": "ДГ №22 Великденче (с яслени групи)",
+        "address": "гр. София, ул. 210 № 27 - II м. р.  ",
+        "phone": null,
+        "region": "Люлин",
+        "regionObj": null,
+        "directorName": null,
+        "directorFamily": null,
+        "contacts": [
+          {
+            "id": null,
+            "typeCommunication": {
+              "id": 2,
+              "komunikacias": [],
+              "label": "business"
+            },
+            "kindCommunication": {
+              "id": 2,
+              "komunikacias": [],
+              "label": "phone"
+            },
+            "fieldValue": "02/824 11 70"
+          },
+          {
+            "id": null,
+            "typeCommunication": {
+              "id": 2,
+              "komunikacias": [],
+              "label": "business"
+            },
+            "kindCommunication": {
+              "id": 2,
+              "komunikacias": [],
+              "label": "phone"
+            },
+            "fieldValue": "02/825 88 66"
+          }
+        ],
+        "addressStructured": null,
+        "studyMode": null,
+        "esriId": 17
+      },
+      {
+        "id": 83,
+        "name": {
+          "publicName": "ДГ №31 Люлин (с яслени групи)",
+          "publicType": "ДГ (с яслени групи)"
+        },
+        "nameStr": "ДГ №31 Люлин (с яслени групи)",
+        "address": "гр. София, ул. 208 № 17 - II м. р.  ",
+        "phone": null,
+        "region": "Люлин",
+        "regionObj": null,
+        "directorName": null,
+        "directorFamily": null,
+        "contacts": [
+          {
+            "id": null,
+            "typeCommunication": {
+              "id": 2,
+              "komunikacias": [],
+              "label": "business"
+            },
+            "kindCommunication": {
+              "id": 2,
+              "komunikacias": [],
+              "label": "phone"
+            },
+            "fieldValue": "02/824 52 73"
+          }
+        ],
+        "addressStructured": null,
+        "studyMode": null,
+        "esriId": 83
+      },
+      {
+        "id": 51,
+        "name": {
+          "publicName": "ДГ №50 Зайчето Куики (с яслени групи)",
+          "publicType": "ДГ (с яслени групи)"
+        },
+        "nameStr": "ДГ №50 Зайчето Куики (с яслени групи)",
+        "address": "гр. София, кв. \"Зона Б-5\" ",
+        "phone": null,
+        "region": "Възраждане",
+        "regionObj": null,
+        "directorName": null,
+        "directorFamily": null,
+        "contacts": [
+          {
+            "id": null,
+            "typeCommunication": {
+              "id": 2,
+              "komunikacias": [],
+              "label": "business"
+            },
+            "kindCommunication": {
+              "id": 2,
+              "komunikacias": [],
+              "label": "phone"
+            },
+            "fieldValue": "02/822 91 41"
+          },
+          {
+            "id": null,
+            "typeCommunication": {
+              "id": 2,
+              "komunikacias": [],
+              "label": "business"
+            },
+            "kindCommunication": {
+              "id": 2,
+              "komunikacias": [],
+              "label": "phone"
+            },
+            "fieldValue": "02/829 26 70"
+          }
+        ],
+        "addressStructured": null,
+        "studyMode": null,
+        "esriId": 51
+      },
+      {
+        "id": 183,
+        "name": {
+          "publicName": "ДГ №119 Детска планета",
+          "publicType": "ДГ"
+        },
+        "nameStr": "ДГ №119 Детска планета",
+        "address": "гр. София, ул. \"Брегалница\", №26",
+        "phone": null,
+        "region": "Възраждане",
+        "regionObj": null,
+        "directorName": null,
+        "directorFamily": null,
+        "contacts": [
+          {
+            "id": null,
+            "typeCommunication": {
+              "id": 2,
+              "komunikacias": [],
+              "label": "business"
+            },
+            "kindCommunication": {
+              "id": 2,
+              "komunikacias": [],
+              "label": "phone"
+            },
+            "fieldValue": "0889580056"
+          }
+        ],
+        "addressStructured": null,
+        "studyMode": null,
+        "esriId": 183
+      }
+    ]
+  }
+}
