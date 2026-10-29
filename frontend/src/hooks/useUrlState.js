@@ -18,7 +18,8 @@ function writeUrl(state) {
   if (state.sort !== 'name') params.set('sort', state.sort);
   const search = params.toString();
   const url = `${window.location.pathname}${search ? `?${search}` : ''}${window.location.hash}`;
-  window.history.replaceState(null, '', url);
+  // Keep history.state: it holds the saved scroll position used when coming back.
+  window.history.replaceState(window.history.state, '', url);
 }
 
 /**

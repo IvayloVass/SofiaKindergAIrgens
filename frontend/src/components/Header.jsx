@@ -18,15 +18,10 @@ export default function Header({ meta, total }) {
               <span className="hero-chip">Обновено: {formatDate(meta.lastSyncedAt)}</span>
             )}
           </div>
-          {meta && meta.rankingsPublished === false && (
-            <p className="hero-note mb-0">
-              <Icon name="info" size={16} /> Официалното класиране все още не е публикувано. Данните са от{' '}
-              <a href={meta.source} target="_blank" rel="noreferrer">
-                kg.sofia.bg
-              </a>
-              .
-            </p>
-          )}
+          <p className="hero-note mb-0">
+            <Icon name="info" size={16} /> Изберете детска градина, за да видите групите, свободните места, класирането и
+            списъка с чакащи.
+          </p>
         </div>
       </div>
     </header>

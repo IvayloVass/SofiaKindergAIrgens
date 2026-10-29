@@ -15,7 +15,9 @@ describe('App', () => {
     render(<App />);
     await waitFor(() => expect(cards()).toHaveLength(9));
     expect(within(tile('Заведения')).getByText('9')).toBeInTheDocument();
-    expect(screen.getByText(/Официалното класиране все още не е публикувано/)).toBeInTheDocument();
+    expect(screen.getByText(/Изберете детска градина, за да видите групите/)).toBeInTheDocument();
+    // Every card links to its detail page.
+    expect(screen.getByRole('link', { name: 'ДГ №1 Червената шапчица (с яслени групи)' })).toHaveAttribute('href', '/kindergarten/171');
     expect(screen.queryByRole('table')).not.toBeInTheDocument();
   });
 

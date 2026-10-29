@@ -103,3 +103,28 @@ function toKindergarten(row) {
     hasPreparatory: row.has_preparatory === 1,
   };
 }
+
+/** Returns { data, fetchedAt } for a cache key, or null. */
+export function getCached(db, key) {
+  const row = db.prepare('SELECT data, fetched_at FROM cache WHERE key = ?').get(key);
+  return row ? { data: JSON.parse(row.data), fetchedAt: Number(row.fetched_at) } : null;
+}
+
+export function setCached(db, key, data, fetchedAt = Date.now()) {
+  db.prepare(
+    `INSERT INTO cache (key, data, fetched_at) VALUES (?, ?, ?)
+     ON CONFLICT(key) DO UPDATE SET data = excluded.data, fetched_at = excluded.fetched_at`,
+  ).run(key, JSON.stringify(data), fetchedAt);
+}
+
+/** Kindergarten by id from the synced list (null if unknown). */
+export function getKindergarten(db, id) {
+  const row = db
+    .prepare(
+      `SELECT k.*, r.name AS region_name
+       FROM kindergartens k LEFT JOIN regions r ON r.id = k.region_id
+       WHERE k.id = ?`,
+    )
+    .get(Number(id));
+  return row ? toKindergarten(row) : null;
+}

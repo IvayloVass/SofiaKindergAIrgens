@@ -2,6 +2,7 @@ import { memo } from 'react';
 import Icon from './Icon.jsx';
 import { GROUPS, typeInfo } from '../utils/types.js';
 import { mapsHref, phoneHref } from '../utils/format.js';
+import { Link, kindergartenPath } from '../router.jsx';
 
 function KindergartenCard({ kg, onRegionClick, regionSelected }) {
   const type = typeInfo(kg.type);
@@ -19,7 +20,12 @@ function KindergartenCard({ kg, onRegionClick, regionSelected }) {
         </button>
       </div>
 
-      <h3 className="kg-name">{kg.name}</h3>
+      <h3 className="kg-name">
+        {/* The link covers the whole card (see .kg-card-link::after); inner buttons/links sit above it. */}
+        <Link to={kindergartenPath(kg.id)} className="kg-card-link">
+          {kg.name}
+        </Link>
+      </h3>
 
       <ul className="kg-groups" aria-label="Групи">
         {GROUPS.map((g) => (
@@ -55,6 +61,10 @@ function KindergartenCard({ kg, onRegionClick, regionSelected }) {
             <span>Няма публикуван телефон</span>
           </div>
         )}
+      </div>
+
+      <div className="kg-more" aria-hidden="true">
+        Групи, места и класиране <Icon name="arrow" size={16} />
       </div>
     </article>
   );
