@@ -7,7 +7,6 @@ The data comes from the public portal [kg.sofia.bg](https://kg.sofia.bg/#/kinder
 - **District filter** (the only filter): multi-select chips with live counts.
 - **Cards instead of a table**: name, type, district, address (opens Google Maps), phones (tap to call), and which group kinds the kindergarten runs (nursery / kindergarten / preparatory).
 - **Comparison view** with charts that follow the current filters:
-  - districts compared by share of kindergartens with nursery, kindergarten and preparatory groups,
   - a donut chart of kindergarten types,
   - kindergartens per district (click a bar to add or remove that district from the filter).
 - The filter state lives in the URL, so links can be shared. Light and dark mode follow the OS setting.
@@ -66,15 +65,15 @@ The source API blocks requests from other websites (CORS), so the browser can't 
 
 ### API
 
-| Endpoint | Returns |
+| Endpoint |
 | --- | --- |
-| `GET /api/kindergartens[?region=<id>]` | `[{ id, name, type, regionId, regionName, address, phones[], hasNursery, hasKindergarten, hasPreparatory }]` |
-| `GET /api/regions` | `[{ id, name, count }]` |
-| `GET /api/meta` | `{ lastSyncedAt, source }` |
-| `GET /api/kindergartens/:id` | Details: director, contacts, groups with places per quota, ranking dates, info for parents |
-| `GET /api/kindergartens/:id/groups/:groupId/waiting` | Waiting lists per quota (initials, application number, points) |
-| `GET /api/kindergartens/:id/groups/:groupId/rankings/:ratingId` | One ranking: `entry`, `rated`, `notRated` lists with sections and entries |
-| `GET /api/health` | `{ status: "ok" }` |
+| `GET /api/kindergartens[?region=<id>]` |
+| `GET /api/regions` |
+| `GET /api/meta` |
+| `GET /api/kindergartens/:id` |
+| `GET /api/kindergartens/:id/groups/:groupId/waiting` |
+| `GET /api/kindergartens/:id/groups/:groupId/rankings/:ratingId` | 
+| `GET /api/health` |
 
 ### Source endpoints used
 
@@ -85,13 +84,3 @@ The source API blocks requests from other websites (CORS), so the browser can't 
 - `https://kg.sofia.bg/api/stat-rating/{entry|rated|not-rated}/{ratingId}/{groupId}` (rankings, HTML tables parsed in `backend/src/details.js`)
 
 Ranking and waiting lists show only initials, application number and points — exactly as the municipality publishes them.
-
-## Dependencies
-
-Kept small on purpose:
-
-- Frontend: `react`, `react-dom`, `bootstrap` (CSS only), `chart.js`, `react-chartjs-2`; dev: `vite`, `@vitejs/plugin-react`
-- Tests: `vitest`, `jsdom`, `@testing-library/react`, `@testing-library/dom`, `@testing-library/jest-dom`
-- Backend and database: none (Node built-ins only)
-
-Chart colors use a colorblind-safe palette, and every chart has a "show data as text" option.

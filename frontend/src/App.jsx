@@ -38,7 +38,6 @@ export default function App() {
           <a href="https://kg.sofia.bg/#/kindergartens" target="_blank" rel="noreferrer">
             ИСОДЗ на Столична община (kg.sofia.bg)
           </a>
-          . Неофициално приложение, създадено с отворени данни.
         </div>
       </footer>
     </>
