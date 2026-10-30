@@ -6,7 +6,6 @@ export default function Header({ meta, total }) {
     <header className="hero">
       <div className="container-xxl px-3 px-md-4">
         <div className="hero-content">
-          <p className="hero-eyebrow mb-2">Столична община · общински детски градини и ясли</p>
           <h1 className="hero-title">Детските градини в София</h1>
           <p className="hero-lead">
             Намерете бързо градина или ясла по име, адрес или район и сравнете районите с няколко клика.
