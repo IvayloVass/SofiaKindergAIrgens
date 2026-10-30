@@ -24,8 +24,7 @@ export default function SearchBar({ value, onChange }) {
         ref={inputRef}
         type="search"
         className="form-control form-control-lg search-input"
-        placeholder="Търсете по име, адрес или район…  (напр. „Слънце“, „Младост“, „cherven“)"
-        aria-label="Търсене на детска градина"
+        placeholder="Търсене"
         value={value}
         onChange={(e) => onChange(e.target.value)}
         onKeyDown={(e) => e.key === 'Escape' && onChange('')}
