@@ -6,6 +6,7 @@ import StatTiles from '../components/StatTiles.jsx';
 import KindergartenGrid from '../components/KindergartenGrid.jsx';
 import EmptyState, { LoadingCards } from '../components/EmptyState.jsx';
 import Icon from '../components/Icon.jsx';
+import { Brand } from '../components/Logo.jsx';
 import TypeDonut from '../components/charts/TypeDonut.jsx';
 import DistrictBar from '../components/charts/DistrictBar.jsx';
 import GroupsComparison from '../components/charts/GroupsComparison.jsx';
@@ -69,21 +70,24 @@ export default function ListPage({ data, scheme }) {
       <Header meta={meta} total={kindergartens.length} />
 
       <div className="toolbar">
-        <div className="container-xxl px-3 px-md-4 d-flex gap-2 align-items-center">
-          <div className="flex-grow-1">
-            <SearchBar value={query} onChange={(q) => update({ query: q })} />
+        <div className="container-xxl px-3 px-md-4 toolbar-grid">
+          <div className="toolbar-start">
+            <Brand size={36} />
           </div>
-          <button
-            type="button"
-            className="btn btn-outline-primary d-lg-none filter-toggle"
-            onClick={() => setFiltersOpen(true)}
-            aria-controls="filters"
-            aria-expanded={filtersOpen}
-          >
-            <Icon name="filter" />
-            <span className="d-none d-sm-inline ms-1">Райони</span>
-            {selected.length > 0 && <span className="badge rounded-pill text-bg-primary ms-1">{selected.length}</span>}
-          </button>
+          <SearchBar value={query} onChange={(q) => update({ query: q })} />
+          <div className="toolbar-end">
+            <button
+              type="button"
+              className="btn btn-outline-primary d-lg-none filter-toggle"
+              onClick={() => setFiltersOpen(true)}
+              aria-controls="filters"
+              aria-expanded={filtersOpen}
+            >
+              <Icon name="filter" />
+              <span className="d-none d-sm-inline ms-1">Райони</span>
+              {selected.length > 0 && <span className="badge rounded-pill text-bg-primary ms-1">{selected.length}</span>}
+            </button>
+          </div>
         </div>
       </div>
 

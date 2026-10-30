@@ -19,8 +19,12 @@
   --chip-on-bg: #5b4bdb;
   --chip-on-fg: #ffffff;
   --good: #0e7a3f;
-  --hero-from: #5b4bdb;
-  --hero-to: #8b5cf6;
+  /* Hero: evening sky over Vitosha (navy → teal) */
+  --hero-from: #1b2f5e;
+  --hero-to: #17707f;
+  --brand-ink: #1b2f5e;
+  /* Soft lavender frame for the region filter - visible but not loud */
+  --filter-border: #c9c2ec;
 
   /* Type colors = chart categorical slots (light steps) */
   --slot-1: #2a78d6;
@@ -46,8 +50,10 @@
   --chip-on-bg: #8f84f0;
   --chip-on-fg: #121116;
   --good: #3ccf7e;
-  --hero-from: #2e2580;
-  --hero-to: #4d2f8f;
+  --hero-from: #0f1d3d;
+  --hero-to: #0f4a55;
+  --brand-ink: #e6ecff;
+  --filter-border: #4a4475;
 
   --slot-1: #3987e5;
   --slot-2: #d95926;
@@ -95,14 +101,34 @@ body {
 
 /* ---------- Hero ---------- */
 .hero {
+  position: relative;
   background:
-    radial-gradient(circle at 85% 20%, rgba(255, 201, 77, 0.35), transparent 40%),
-    linear-gradient(135deg, var(--hero-from), var(--hero-to));
+    radial-gradient(ellipse at 50% 0%, rgba(255, 201, 77, 0.28), transparent 55%),
+    linear-gradient(160deg, var(--hero-from), var(--hero-to));
   color: #fff;
-  padding: 3rem 0 2.5rem;
+  padding: 2.75rem 0 5rem;
+  overflow: hidden;
 }
 .hero-content {
+  position: relative;
+  z-index: 1;
   max-width: 46rem;
+  margin: 0 auto;
+  text-align: center;
+}
+.hero-logo {
+  display: block;
+  margin: 0 auto 1rem;
+  border-radius: 20px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
+}
+.hero-mountains {
+  position: absolute;
+  left: 0;
+  bottom: -1px;
+  width: 100%;
+  height: 70px;
+  color: var(--bs-body-bg);
 }
 .hero-eyebrow {
   font-size: 0.85rem;
@@ -123,6 +149,7 @@ body {
 .hero-meta {
   display: flex;
   flex-wrap: wrap;
+  justify-content: center;
   gap: 0.5rem;
   margin: 1rem 0;
 }
@@ -135,8 +162,30 @@ body {
   font-weight: 600;
 }
 .hero-note {
-  font-size: 0.875rem;
-  opacity: 0.9;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  text-align: left;
+  font-size: 0.925rem;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 999px;
+  padding: 0.4rem 1.1rem 0.4rem 0.4rem;
+}
+.tip-badge {
+  flex-shrink: 0;
+  display: inline-grid;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: rgba(255, 201, 77, 0.18);
+  box-shadow: inset 0 0 0 1px rgba(255, 201, 77, 0.45);
+}
+@media (max-width: 575.98px) {
+  .hero-note {
+    border-radius: 1rem;
+  }
 }
 .hero-note a {
   color: #fff;
@@ -153,8 +202,55 @@ body {
   border-bottom: 1px solid var(--line);
   padding: 0.75rem 0;
 }
+/* Brand (left) · search (centre) · filter button (right) */
+.toolbar-grid {
+  display: grid;
+  grid-template-columns: 1fr minmax(0, 640px) 1fr;
+  align-items: center;
+  gap: 0.75rem;
+}
+.toolbar-grid > .toolbar-end {
+  justify-self: end;
+}
+@media (max-width: 991.98px) {
+  .toolbar-grid {
+    grid-template-columns: minmax(0, 1fr) auto;
+  }
+  .toolbar-grid > .toolbar-start {
+    display: none;
+  }
+}
 .search-box {
   position: relative;
+  width: 100%;
+  max-width: 640px;
+  margin: 0 auto;
+}
+
+/* Brand mark + name */
+.brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  text-decoration: none;
+  color: var(--brand-ink);
+  line-height: 1.1;
+}
+.brand .logo-mark {
+  border-radius: 10px;
+  box-shadow: 0 0 0 1px var(--line), var(--shadow);
+}
+.brand-name {
+  display: flex;
+  flex-direction: column;
+  font-size: 0.85rem;
+}
+.brand-name span {
+  font-size: 0.75rem;
+  color: var(--bs-secondary-color);
+}
+.brand:hover strong {
+  color: var(--bs-primary);
 }
 .search-icon {
   position: absolute;
@@ -198,13 +294,15 @@ body {
 /* ---------- Region filter ---------- */
 .filters-panel {
   --bs-offcanvas-bg: var(--surface);
+  --bs-offcanvas-border-color: var(--filter-border);
+  --bs-offcanvas-border-width: 1.5px;
 }
 @media (min-width: 992px) {
   .filters-panel {
     position: sticky;
     top: 5.5rem;
     background: var(--surface);
-    border: 1px solid var(--line);
+    border: 1.5px solid var(--filter-border);
     border-radius: 1rem;
     box-shadow: var(--shadow);
     padding: 1.25rem;

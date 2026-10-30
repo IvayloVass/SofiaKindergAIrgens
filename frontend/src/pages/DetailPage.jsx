@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import Icon from '../components/Icon.jsx';
+import { Brand } from '../components/Logo.jsx';
 import DetailHero from '../components/detail/DetailHero.jsx';
 import FactTiles from '../components/detail/FactTiles.jsx';
 import GroupsSection from '../components/detail/GroupsSection.jsx';
@@ -38,7 +39,8 @@ export default function DetailPage({ id, data, scheme }) {
   return (
     <div className="detail-page">
       <nav className="detail-topbar" aria-label="Навигация">
-        <div className="container-xxl px-3 px-md-4 d-flex align-items-center gap-2">
+        <div className="container-xxl px-3 px-md-4 d-flex align-items-center gap-3">
+          <Brand size={32} className="d-none d-sm-inline-flex" />
           <button type="button" className="btn btn-back" onClick={() => goBack('/')}>
             <Icon name="back" /> <span>Всички градини</span>
           </button>
