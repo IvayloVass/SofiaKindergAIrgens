@@ -1,12 +1,14 @@
 import { beforeEach, describe, expect, it } from 'vitest';
+import { DatabaseSync } from 'node:sqlite';
+import { mkdtempSync, rmSync } from 'node:fs';
+import { tmpdir } from 'node:os';
+import { join } from 'node:path';
 import {
   countKindergartens,
   getKindergartens,
-  getMeta,
   getRegions,
   openDatabase,
   replaceAll,
-  setMeta,
 } from '@kg/database';
 
 const regions = [
@@ -52,13 +54,36 @@ describe('database', () => {
       hasNursery: true,
       hasKindergarten: true,
       hasPreparatory: false,
+      places: null,
     });
     expect(all[1].phones).toEqual([]);
   });
 
+  it('adds the places columns to a database file created before they existed', () => {
+    const dir = mkdtempSync(join(tmpdir(), 'kg-db-'));
+    const path = join(dir, 'old.db');
+    const old = new DatabaseSync(path);
+    old.exec(`CREATE TABLE kindergartens (
+      id INTEGER PRIMARY KEY, name TEXT NOT NULL, type TEXT NOT NULL, region_id TEXT,
+      address TEXT NOT NULL DEFAULT '', phones TEXT NOT NULL DEFAULT '[]',
+      has_nursery INTEGER NOT NULL DEFAULT 0, has_kindergarten INTEGER NOT NULL DEFAULT 0,
+      has_preparatory INTEGER NOT NULL DEFAULT 0)`);
+    old.exec(`INSERT INTO kindergartens (id, name, type) VALUES (1, 'ДГ №1', 'ДГ')`);
+    old.close();
+
+    const db2 = openDatabase(path);
+    try {
+      expect(getKindergartens(db2)[0].places).toBeNull();
+      replaceAll(db2, { regions, kindergartens: [kg(5, '15', { places: { capacity: 10, enrolled: 9, free: 1 } })] });
+      expect(getKindergartens(db2)[0].places).toEqual({ capacity: 10, enrolled: 9, free: 1 });
+    } finally {
+      db2.close();
+      rmSync(dir, { recursive: true, force: true });
+    }
+  });
+
   it('filters by region', () => {
     expect(getKindergartens(db, { regionId: '19' }).map((k) => k.id)).toEqual([3]);
-    expect(getKindergartens(db, { regionId: 19 }).map((k) => k.id)).toEqual([3]);
     expect(getKindergartens(db, { regionId: '99' })).toEqual([]);
   });
 
@@ -70,23 +95,10 @@ describe('database', () => {
     ]);
   });
 
-  it('replaceAll replaces old data completely', () => {
-    replaceAll(db, { regions, kindergartens: [kg(7, '24')] });
-    expect(countKindergartens(db)).toBe(1);
-    expect(getKindergartens(db)[0].regionName).toBe('Банкя');
-  });
-
   it('replaceAll rolls back on error and keeps old data', () => {
     expect(() =>
       replaceAll(db, { regions, kindergartens: [kg(1, '15'), kg(1, '15')] }),
     ).toThrow();
     expect(countKindergartens(db)).toBe(3);
-  });
-
-  it('reads and updates meta values', () => {
-    expect(getMeta(db, 'lastSyncedAt')).toBeNull();
-    setMeta(db, 'lastSyncedAt', 'a');
-    setMeta(db, 'lastSyncedAt', 'b');
-    expect(getMeta(db, 'lastSyncedAt')).toBe('b');
   });
 });

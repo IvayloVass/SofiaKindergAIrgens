@@ -12,7 +12,18 @@ export function openDatabase(path = ':memory:') {
   if (path !== ':memory:') mkdirSync(dirname(path), { recursive: true });
   const db = new DatabaseSync(path);
   db.exec(schema);
+  migrate(db);
   return db;
+}
+
+/** Columns added after the first release; older database files get them here. */
+const ADDED_COLUMNS = { capacity: 'INTEGER', enrolled: 'INTEGER', free_places: 'INTEGER' };
+
+function migrate(db) {
+  const existing = new Set(db.prepare('PRAGMA table_info(kindergartens)').all().map((c) => c.name));
+  for (const [name, type] of Object.entries(ADDED_COLUMNS)) {
+    if (!existing.has(name)) db.exec(`ALTER TABLE kindergartens ADD COLUMN ${name} ${type}`);
+  }
 }
 
 /** Replaces all regions and kindergartens in a single transaction. */
@@ -20,8 +31,9 @@ export function replaceAll(db, { regions, kindergartens }) {
   const insertRegion = db.prepare('INSERT INTO regions (id, name) VALUES (?, ?)');
   const insertKg = db.prepare(`
     INSERT INTO kindergartens
-      (id, name, type, region_id, address, phones, has_nursery, has_kindergarten, has_preparatory)
-    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
+      (id, name, type, region_id, address, phones, has_nursery, has_kindergarten, has_preparatory,
+       capacity, enrolled, free_places)
+    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
   `);
 
   db.exec('BEGIN');
@@ -39,6 +51,9 @@ export function replaceAll(db, { regions, kindergartens }) {
         k.hasNursery ? 1 : 0,
         k.hasKindergarten ? 1 : 0,
         k.hasPreparatory ? 1 : 0,
+        k.places?.capacity ?? null,
+        k.places?.enrolled ?? null,
+        k.places?.free ?? null,
       );
     }
     db.exec('COMMIT');
@@ -101,6 +116,11 @@ function toKindergarten(row) {
     hasNursery: row.has_nursery === 1,
     hasKindergarten: row.has_kindergarten === 1,
     hasPreparatory: row.has_preparatory === 1,
+    // null when the places could not be loaded for this kindergarten
+    places:
+      row.capacity == null
+        ? null
+        : { capacity: Number(row.capacity), enrolled: Number(row.enrolled ?? 0), free: Number(row.free_places ?? 0) },
   };
 }
 
