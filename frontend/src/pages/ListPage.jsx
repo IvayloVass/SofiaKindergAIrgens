@@ -207,13 +207,6 @@ export default function ListPage({ data, scheme }) {
 
             {ready && filtered.length > 0 && view === 'compare' && (
               <div className="charts-grid">
-                <GroupsComparison
-                  items={searchMatches}
-                  regions={regions}
-                  selected={selected}
-                  scheme={scheme}
-                  referenceLabel={debouncedQuery.trim() ? 'Всички намерени' : 'Цяла София'}
-                />
                 <TypeDonut items={filtered} scheme={scheme} className="chart-card-featured" />
                 <PlacesDonut items={filtered} scheme={scheme} scopeLabel={scopeLabel} />
                 <DistrictBar
@@ -222,6 +215,13 @@ export default function ListPage({ data, scheme }) {
                   selected={selected}
                   onToggle={toggleRegion}
                   scheme={scheme}
+                />
+                <GroupsComparison
+                  items={searchMatches}
+                  regions={regions}
+                  selected={selected}
+                  scheme={scheme}
+                  referenceLabel={debouncedQuery.trim() ? 'Всички намерени' : 'Цяла София'}
                 />
               </div>
             )}

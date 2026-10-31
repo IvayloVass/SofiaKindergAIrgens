@@ -59,8 +59,9 @@ describe('App', () => {
     const bars = await screen.findAllByTestId('chart-bar');
     expect(bars).toHaveLength(2);
     // Comparison chart: reference row + the selected district.
-    expect(within(bars[0]).getByText(/^Цяла София:/)).toBeInTheDocument();
-    expect(within(bars[0]).getByText(/^Люлин:/)).toBeInTheDocument();
+    const comparison = screen.getByLabelText('Сравнение на районите по видове групи');
+    expect(within(comparison).getByText(/^Цяла София:/)).toBeInTheDocument();
+    expect(within(comparison).getByText(/^Люлин:/)).toBeInTheDocument();
     // Type donut reflects only the filtered district (3 in Люлин).
     expect(screen.getByTestId('chart-doughnut')).toBeInTheDocument();
     expect(within(tile('Заведения')).getByText('3')).toBeInTheDocument();
