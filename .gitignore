@@ -435,3 +435,8 @@ backend/data/
 *.db-shm
 frontend/dist/
 coverage/
+
+# Playwright
+test-results/
+playwright-report/
+.playwright-cli/
