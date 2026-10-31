@@ -10,7 +10,6 @@ import { Brand } from '../components/Logo.jsx';
 import TypeDonut from '../components/charts/TypeDonut.jsx';
 import PlacesDonut from '../components/charts/PlacesDonut.jsx';
 import DistrictBar from '../components/charts/DistrictBar.jsx';
-import GroupsComparison from '../components/charts/GroupsComparison.jsx';
 import { useUrlState } from '../hooks/useUrlState.js';
 import { useDebouncedValue } from '../hooks/useDebouncedValue.js';
 import { matchesQuery, tokenize } from '../utils/search.js';
@@ -215,13 +214,6 @@ export default function ListPage({ data, scheme }) {
                   selected={selected}
                   onToggle={toggleRegion}
                   scheme={scheme}
-                />
-                <GroupsComparison
-                  items={searchMatches}
-                  regions={regions}
-                  selected={selected}
-                  scheme={scheme}
-                  referenceLabel={debouncedQuery.trim() ? 'Всички намерени' : 'Цяла София'}
                 />
               </div>
             )}

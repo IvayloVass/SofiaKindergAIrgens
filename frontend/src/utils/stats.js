@@ -1,4 +1,4 @@
-import { GROUPS, TYPES, typeInfo } from './types.js';
+import { TYPES, typeInfo } from './types.js';
 
 const collator = new Intl.Collator('bg', { numeric: true, sensitivity: 'base' });
 
@@ -57,32 +57,6 @@ export function countByRegion(list, regions) {
   return regions
     .map((r) => ({ id: r.id, name: r.name, count: counts.get(r.id) ?? 0 }))
     .sort((a, b) => b.count - a.count || collator.compare(a.name, b.name));
-}
-
-/** Share (%) of kindergartens offering each group kind. */
-export function groupShares(list) {
-  const total = list.length;
-  return Object.fromEntries(
-    GROUPS.map((g) => {
-      const count = list.filter((k) => k[g.key]).length;
-      return [g.key, { count, pct: pct(count, total) }];
-    }),
-  );
-}
-
-/**
- * Rows for the district comparison chart: one row per district plus an
- * "all Sofia" reference row, each with group shares.
- */
-export function groupSharesByRegion(list, regions, regionIds, referenceLabel = 'Цяла София') {
-  const rows = regionIds
-    .map((id) => regions.find((r) => r.id === id))
-    .filter(Boolean)
-    .map((r) => {
-      const inRegion = list.filter((k) => k.regionId === r.id);
-      return { id: r.id, name: r.name, total: inRegion.length, shares: groupShares(inRegion) };
-    });
-  return [{ id: 'all', name: referenceLabel, total: list.length, shares: groupShares(list) }, ...rows];
 }
 
 export function sortKindergartens(list, sortBy) {

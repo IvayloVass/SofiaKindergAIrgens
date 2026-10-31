@@ -47,12 +47,9 @@ describe('App', () => {
   it('restores filters from the URL and shows charts in the compare view', async () => {
     window.history.replaceState(null, '', '/?view=compare&regions=19');
     render(<App />);
+    // Districts bar chart and the type donut
     const bars = await screen.findAllByTestId('chart-bar');
-    expect(bars).toHaveLength(2);
-    // Comparison chart: reference row + the selected district.
-    const comparison = screen.getByLabelText('Сравнение на районите по видове групи');
-    expect(within(comparison).getByText(/^Цяла София:/)).toBeInTheDocument();
-    expect(within(comparison).getByText(/^Люлин:/)).toBeInTheDocument();
+    expect(bars).toHaveLength(1);
     expect(screen.getByTestId('chart-doughnut')).toBeInTheDocument();
     expect(within(tile('Заведения')).getByText('3')).toBeInTheDocument();
   });
