@@ -4,7 +4,7 @@ import { chartTheme, tooltipOptions } from './palette.js';
 import { countByType, pct } from '../../utils/stats.js';
 
 /** Part-to-whole: how the filtered kindergartens split by type. */
-export default function TypeDonut({ items, scheme }) {
+export default function TypeDonut({ items, scheme, className = '' }) {
   const theme = chartTheme(scheme);
   const rows = countByType(items);
   const total = items.length;
@@ -40,6 +40,7 @@ export default function TypeDonut({ items, scheme }) {
     <ChartCard
       title="Видове заведения"
       subtitle="Разпределение на резултатите по тип"
+      className={className}
       dataView={
         <ul>
           {rows.map((r) => (

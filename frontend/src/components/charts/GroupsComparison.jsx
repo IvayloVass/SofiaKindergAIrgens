@@ -1,3 +1,5 @@
+import { Bar } from 'react-chartjs-2';
+import ChartCard, { Legend } from './ChartCard.jsx';
 import { chartTheme, tooltipOptions } from './palette.js';
 import { countByRegion, groupSharesByRegion } from '../../utils/stats.js';
 import { GROUPS } from '../../utils/types.js';
@@ -70,4 +72,27 @@ export default function GroupsComparison({ items, regions, selected, scheme, ref
       },
     },
   };
+
+  return (
+    <ChartCard
+      title="Групи по райони"
+      className="chart-card-wide"
+      subtitle="Дял от заведенията във всеки район с всеки вид групи, в сравнение с цяла София."
+      dataView={
+        <ul>
+          {rows.map((r) => (
+            <li key={r.id}>
+              {r.name}:{' '}
+              {GROUPS.map((g) => `${g.short} ${r.shares[g.key].pct}% (${r.shares[g.key].count} от ${r.total})`).join('; ')}
+            </li>
+          ))}
+        </ul>
+      }
+    >
+      <div style={{ height: rows.length * 56 + 40 }}>
+        <Bar data={data} options={options} aria-label="Сравнение на районите по видове групи" role="img" />
+      </div>
+      <Legend items={GROUPS.map((g, i) => ({ label: g.label, color: theme.series[i] }))} />
+    </ChartCard>
+  );
 }

@@ -369,10 +369,21 @@ body {
   gap: 0.75rem;
   margin-bottom: 1.25rem;
 }
+.stat-tiles.has-5 {
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+}
 @media (max-width: 767.98px) {
-  .stat-tiles {
+  .stat-tiles,
+  .stat-tiles.has-5 {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
+  /* The odd fifth tile (free places) takes the full last row */
+  .stat-tiles.has-5 .stat-tile:last-child {
+    grid-column: 1 / -1;
+  }
+}
+.stat-tile.is-good .stat-value {
+  color: var(--good);
 }
 .stat-tile {
   background: var(--surface);
@@ -644,6 +655,17 @@ a.kg-line:hover span {
 .chart-card-wide {
   grid-column: 1 / -1;
 }
+/* Own row, centered, exactly one column wide (100% here spans both columns) */
+.chart-card-featured {
+  grid-column: 1 / -1;
+  justify-self: center;
+  width: calc((100% - 1rem) / 2);
+}
+@media (max-width: 991.98px) {
+  .chart-card-featured {
+    width: 100%;
+  }
+}
 @media (max-width: 991.98px) {
   .charts-grid {
     grid-template-columns: minmax(0, 1fr);
@@ -706,9 +728,13 @@ a.kg-line:hover span {
   margin-left: auto;
   padding-left: 0.75rem;
 }
+/* Fixed square so every pie is exactly the same size */
 .donut-wrap {
   position: relative;
+  width: 220px;
+  max-width: 100%;
   height: 220px;
+  margin: 0 auto;
 }
 .donut-center {
   position: absolute;

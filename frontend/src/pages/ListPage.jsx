@@ -8,6 +8,7 @@ import EmptyState, { LoadingCards } from '../components/EmptyState.jsx';
 import Icon from '../components/Icon.jsx';
 import { Brand } from '../components/Logo.jsx';
 import TypeDonut from '../components/charts/TypeDonut.jsx';
+import PlacesDonut from '../components/charts/PlacesDonut.jsx';
 import DistrictBar from '../components/charts/DistrictBar.jsx';
 import GroupsComparison from '../components/charts/GroupsComparison.jsx';
 import { useUrlState } from '../hooks/useUrlState.js';
@@ -206,20 +207,21 @@ export default function ListPage({ data, scheme }) {
 
             {ready && filtered.length > 0 && view === 'compare' && (
               <div className="charts-grid">
-                <GroupsComparison
-                  items={searchMatches}
-                  regions={regions}
-                  selected={selected}
-                  scheme={scheme}
-                  referenceLabel={debouncedQuery.trim() ? 'Всички намерени' : 'Цяла София'}
-                />
-                <TypeDonut items={filtered} scheme={scheme} />
+                <TypeDonut items={filtered} scheme={scheme} className="chart-card-featured" />
+                <PlacesDonut items={filtered} scheme={scheme} scopeLabel={scopeLabel} />
                 <DistrictBar
                   items={searchMatches}
                   regions={regions}
                   selected={selected}
                   onToggle={toggleRegion}
                   scheme={scheme}
+                />
+                <GroupsComparison
+                  items={searchMatches}
+                  regions={regions}
+                  selected={selected}
+                  scheme={scheme}
+                  referenceLabel={debouncedQuery.trim() ? 'Всички намерени' : 'Цяла София'}
                 />
               </div>
             )}

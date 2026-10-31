@@ -14,7 +14,11 @@ CREATE TABLE IF NOT EXISTS kindergartens (
   phones           TEXT    NOT NULL DEFAULT '[]', -- JSON array of strings
   has_nursery      INTEGER NOT NULL DEFAULT 0,
   has_kindergarten INTEGER NOT NULL DEFAULT 0,
-  has_preparatory  INTEGER NOT NULL DEFAULT 0
+  has_preparatory  INTEGER NOT NULL DEFAULT 0,
+  -- Places in the current school year, summed over all groups (NULL = unknown)
+  capacity         INTEGER,
+  enrolled         INTEGER,
+  free_places      INTEGER
 );
 
 CREATE INDEX IF NOT EXISTS idx_kindergartens_region ON kindergartens(region_id);

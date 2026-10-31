@@ -25,6 +25,7 @@ export default function SearchBar({ value, onChange }) {
         type="search"
         className="form-control form-control-lg search-input"
         placeholder="Търсене"
+        aria-label="Търсене на детска градина"
         value={value}
         onChange={(e) => onChange(e.target.value)}
         onKeyDown={(e) => e.key === 'Escape' && onChange('')}

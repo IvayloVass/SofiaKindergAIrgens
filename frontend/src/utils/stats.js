@@ -16,7 +16,27 @@ export function summarize(list) {
     preparatory,
     preparatoryPct: pct(preparatory, total),
     districts: new Set(list.map((k) => k.regionId)).size,
+    places: placesTotals(list),
   };
+}
+
+/**
+ * Places summed over a list of kindergartens (current school year).
+ * `known` is how many of them have place data; the rest are left out.
+ */
+export function placesTotals(list) {
+  let capacity = 0;
+  let enrolled = 0;
+  let free = 0;
+  let known = 0;
+  for (const k of list) {
+    if (!k.places) continue;
+    known += 1;
+    capacity += k.places.capacity;
+    enrolled += k.places.enrolled;
+    free += k.places.free;
+  }
+  return { capacity, enrolled, free, taken: capacity - free, freePct: pct(free, capacity), known, total: list.length };
 }
 
 /** Counts per kindergarten type, in the fixed type order (only non-empty types). */
