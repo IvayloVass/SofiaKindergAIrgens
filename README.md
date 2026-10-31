@@ -59,21 +59,21 @@ The source API blocks requests from other websites (CORS), so the browser can't 
 1. downloads the district list and the kindergarten lists from kg.sofia.bg (`backend/src/source.js`),
 2. merges them into clean records (`backend/src/normalize.js`),
 3. stores them in SQLite (`database/src/index.js`),
-4. refreshes every 24 hours, and keeps serving the last good data if the source is down (`backend/src/sync.js`).
+4. refreshes every 24 hours, and keeps serving the last good data if the source is down (`backend/src/sync.js`),
 5. fetches detail pages, waiting lists and rankings on demand, caches them in SQLite (6h / 1h / 6h) and serves the cached copy if the source is down (`backend/src/kindergartenService.js`, `backend/src/cache.js`). Group and ranking ids are checked against the kindergarten, so the API can't be used as an open proxy.
 6. cleans the "info for parents" HTML with a small allow-list sanitizer (`backend/src/sanitize.js`) before it reaches the browser.
 
 ### API
 
 | Endpoint |
-| --- | --- |
-| `GET /api/kindergartens[?region=<id>]` |
-| `GET /api/regions` |
-| `GET /api/meta` |
-| `GET /api/kindergartens/:id` |
-| `GET /api/kindergartens/:id/groups/:groupId/waiting` |
-| `GET /api/kindergartens/:id/groups/:groupId/rankings/:ratingId` | 
-| `GET /api/health` |
+| --- |
+| `/api/kindergartens` |
+| `/api/regions` |
+| `/api/meta` |
+| `/api/kindergartens/:id` |
+| `/api/kindergartens/:id/groups/:groupId/waiting` |
+| `/api/kindergartens/:id/groups/:groupId/rankings/:ratingId` |
+| `/api/health` |
 
 ### Source endpoints used
 

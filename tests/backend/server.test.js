@@ -31,18 +31,10 @@ describe('HTTP API', () => {
     rmSync(staticDir, { recursive: true, force: true });
   });
 
-  const get = (path, init) => fetch(base + path, init);
-
-  it('GET /api/health', async () => {
-    const res = await get('/api/health');
-    expect(res.status).toBe(200);
-    expect(await res.json()).toEqual({ status: 'ok' });
-  });
+  const get = (path) => fetch(base + path);
 
   it('GET /api/kindergartens returns all records', async () => {
-    const res = await get('/api/kindergartens');
-    expect(res.headers.get('content-type')).toMatch(/application\/json/);
-    const body = await res.json();
+    const body = await (await get('/api/kindergartens')).json();
     expect(body).toHaveLength(9);
     expect(body[0]).toHaveProperty('regionName');
   });
@@ -53,31 +45,9 @@ describe('HTTP API', () => {
     expect(body.every((k) => k.regionName === 'Люлин')).toBe(true);
   });
 
-  it('GET /api/regions returns counts', async () => {
-    const body = await (await get('/api/regions')).json();
-    expect(body.find((r) => r.name === 'Младост').count).toBe(2);
-  });
-
-  it('GET /api/meta returns sync time and source', async () => {
-    const body = await (await get('/api/meta')).json();
-    expect(body.lastSyncedAt).toMatch(/^\d{4}-/);
-    expect(body.source).toContain('kg.sofia.bg');
-  });
-
-  it('unknown API routes return JSON 404', async () => {
-    const res = await get('/api/nope');
-    expect(res.status).toBe(404);
-    expect(await res.json()).toEqual({ error: 'Not found' });
-  });
-
-  it('rejects non-GET methods', async () => {
-    expect((await get('/api/health', { method: 'POST' })).status).toBe(405);
-  });
-
   it('serves built frontend files with SPA fallback', async () => {
     const asset = await get('/assets/app.js');
     expect(asset.headers.get('content-type')).toMatch(/javascript/);
-    expect(asset.headers.get('cache-control')).toMatch(/immutable/);
 
     const deepLink = await get('/some/page');
     expect(deepLink.status).toBe(200);

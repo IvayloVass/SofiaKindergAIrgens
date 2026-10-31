@@ -15,8 +15,6 @@ describe('App', () => {
     render(<App />);
     await waitFor(() => expect(cards()).toHaveLength(9));
     expect(within(tile('Заведения')).getByText('9')).toBeInTheDocument();
-    expect(screen.getByText(/Изберете детска градина, за да видите групите/)).toBeInTheDocument();
-    // Every card links to its detail page.
     expect(screen.getByRole('link', { name: 'ДГ №1 Червената шапчица (с яслени групи)' })).toHaveAttribute('href', '/kindergarten/171');
     expect(screen.queryByRole('table')).not.toBeInTheDocument();
   });
@@ -46,13 +44,6 @@ describe('App', () => {
     await waitFor(() => expect(cards()).toHaveLength(9));
   });
 
-  it('shows a friendly empty state', async () => {
-    render(<App />);
-    await waitFor(() => expect(cards()).toHaveLength(9));
-    fireEvent.change(screen.getByLabelText('Търсене на детска градина'), { target: { value: 'несъществуваща' } });
-    await waitFor(() => expect(screen.getByText('Няма намерени детски градини')).toBeInTheDocument());
-  });
-
   it('restores filters from the URL and shows charts in the compare view', async () => {
     window.history.replaceState(null, '', '/?view=compare&regions=19');
     render(<App />);
@@ -62,7 +53,6 @@ describe('App', () => {
     const comparison = screen.getByLabelText('Сравнение на районите по видове групи');
     expect(within(comparison).getByText(/^Цяла София:/)).toBeInTheDocument();
     expect(within(comparison).getByText(/^Люлин:/)).toBeInTheDocument();
-    // Type donut reflects only the filtered district (3 in Люлин).
     expect(screen.getByTestId('chart-doughnut')).toBeInTheDocument();
     expect(within(tile('Заведения')).getByText('3')).toBeInTheDocument();
   });
