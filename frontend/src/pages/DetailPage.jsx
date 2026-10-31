@@ -6,6 +6,7 @@ import FactTiles from '../components/detail/FactTiles.jsx';
 import GroupsSection from '../components/detail/GroupsSection.jsx';
 import RankingSection from '../components/detail/RankingSection.jsx';
 import ParentInfo from '../components/detail/ParentInfo.jsx';
+import ReportDownload from '../components/detail/ReportDownload.jsx';
 import { useApi } from '../hooks/useApi.js';
 import { Link, goBack } from '../router.jsx';
 import { formatDate } from '../utils/format.js';
@@ -92,6 +93,10 @@ export default function DetailPage({ id, data, scheme }) {
                 )}
 
                 <FactTiles groups={detail.groups} schoolYear={detail.schoolYear} />
+
+                {detail.groups.length + detail.nextYearGroups.length > 0 && (
+                  <ReportDownload id={detail.id} shortName={detail.shortName} />
+                )}
 
                 <section id="groups" className="detail-section">
                   <GroupsSection

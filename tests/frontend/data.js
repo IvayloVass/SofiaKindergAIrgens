@@ -49,6 +49,16 @@ export function sampleRanking() {
 
 export function mockApi(data = sampleData()) {
   return async (url) => {
+    const report = /^\/api\/kindergartens\/171\/report\.(xlsx|pdf)$/.exec(url);
+    if (report) {
+      const name = encodeURIComponent(`Червената шапчица - класиране 2026-10-31.${report[1]}`);
+      return {
+        ok: true,
+        status: 200,
+        headers: new Headers({ 'Content-Disposition': `attachment; filename="kindergarten-171.${report[1]}"; filename*=UTF-8''${name}` }),
+        blob: async () => new Blob(['file']),
+      };
+    }
     const body = {
       '/api/kindergartens': data.kindergartens,
       '/api/regions': data.regions,

@@ -1,30 +1,9 @@
 import { afterAll, beforeAll, describe, expect, it, vi } from 'vitest';
-import detailFixture from '../fixtures/detail-171.json';
-import waitingFixture from '../fixtures/waiting-9006.json';
-import entryHtml from '../fixtures/rating-entry-446-9006.html?raw';
-import ratedHtml from '../fixtures/rating-rated-446-6059.html?raw';
-import notRatedHtml from '../fixtures/rating-notrated-446-9006.html?raw';
 import { openDatabase } from '@kg/database';
 import { createServer } from '../../backend/src/server.js';
 import { syncNow } from '../../backend/src/sync.js';
 import { cached } from '../../backend/src/cache.js';
-import { fakeSourceFetch } from '../helpers.js';
-
-const json = (body) => ({ ok: true, status: 200, json: async () => body });
-
-/** Fake kg.sofia.bg for detail requests. */
-function fakeDetailSource() {
-  return vi.fn(async (url) => {
-    const path = new URL(url).pathname.replace('/api', '');
-    if (path === '/public/0/dz/171') return json({ items: structuredClone(detailFixture) });
-    if (path.startsWith('/public/0/dz/')) return json({ items: { schoolYear: '2026/2027' } });
-    if (path === '/stat-rating/waiting/9006') return json({ items: structuredClone(waitingFixture) });
-    if (path === '/stat-rating/entry/446/9006') return json({ content: entryHtml });
-    if (path === '/stat-rating/rated/446/9006') return json({ content: ratedHtml });
-    if (path === '/stat-rating/not-rated/446/9006') return json({ content: notRatedHtml });
-    return { ok: false, status: 404, json: async () => ({}) };
-  });
-}
+import { fakeDetailSource, fakeSourceFetch } from '../helpers.js';
 
 describe('detail API', () => {
   let server;

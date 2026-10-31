@@ -42,4 +42,21 @@ describe('Kindergarten detail page', () => {
     expect(within(ranking).getByRole('status')).toHaveTextContent('Входящ № 24018148 е на 1. място в „Общ ред“ с 20 т.');
     expect(within(ranking).getByText('РБК').closest('li')).toHaveClass('is-me');
   });
+
+  it('downloads the report as Excel or PDF', async () => {
+    URL.createObjectURL = vi.fn(() => 'blob:report');
+    URL.revokeObjectURL = vi.fn();
+    const click = vi.spyOn(HTMLAnchorElement.prototype, 'click').mockImplementation(function () {
+      click.saved = this.download;
+    });
+
+    await openDetailFromList();
+    expect(screen.getByRole('button', { name: 'Изтегли като Excel' })).toBeEnabled();
+    fireEvent.click(screen.getByRole('button', { name: 'Изтегли като PDF' }));
+
+    await waitFor(() => expect(click).toHaveBeenCalled());
+    expect(fetch).toHaveBeenCalledWith('/api/kindergartens/171/report.pdf');
+    expect(click.saved).toBe('Червената шапчица - класиране 2026-10-31.pdf');
+    click.mockRestore();
+  });
 });
