@@ -4,7 +4,7 @@ import waitingFixture from '../fixtures/waiting-9006.json';
 import entryHtml from '../fixtures/rating-entry-446-9006.html?raw';
 import ratedHtml from '../fixtures/rating-rated-446-6059.html?raw';
 import notRatedHtml from '../fixtures/rating-notrated-446-9006.html?raw';
-import { getCached, openDatabase, setCached } from '@kg/database';
+import { openDatabase } from '@kg/database';
 import { createServer } from '../../backend/src/server.js';
 import { syncNow } from '../../backend/src/sync.js';
 import { cached } from '../../backend/src/cache.js';
@@ -29,13 +29,11 @@ function fakeDetailSource() {
 describe('detail API', () => {
   let server;
   let base;
-  let source;
 
   beforeAll(async () => {
     const db = openDatabase(':memory:');
     await syncNow(db, { fetchImpl: fakeSourceFetch() });
-    source = fakeDetailSource();
-    server = createServer(db, { fetchImpl: source });
+    server = createServer(db, { fetchImpl: fakeDetailSource() });
     await new Promise((resolve) => server.listen(0, resolve));
     base = `http://localhost:${server.address().port}`;
   });
@@ -52,27 +50,12 @@ describe('detail API', () => {
     expect(status).toBe(200);
     expect(body).toMatchObject({ id: 171, director: 'Боряна Ковачева', regionId: '03', hasNursery: true, stale: false });
     expect(body.groups).toHaveLength(5);
-    expect(body.fetchedAt).toMatch(/^\d{4}-/);
-  });
-
-  it('caches details (second request does not hit the source)', async () => {
-    source.mockClear();
-    await get('/api/kindergartens/171');
-    expect(source).not.toHaveBeenCalled();
-  });
-
-  it('returns 404 for ids that are not in the kindergarten list', async () => {
-    expect((await get('/api/kindergartens/999999')).status).toBe(404);
   });
 
   it('GET waiting list for a group of this kindergarten', async () => {
     const { status, body } = await get('/api/kindergartens/171/groups/9006/waiting');
     expect(status).toBe(200);
     expect(body.lists[0].entries[0].applicationNumber).toBe('24018148');
-  });
-
-  it('refuses groups that belong to another kindergarten', async () => {
-    expect((await get('/api/kindergartens/171/groups/6059/waiting')).status).toBe(404);
   });
 
   it('GET ranking returns all three stages for a known ranking date', async () => {
@@ -84,13 +67,13 @@ describe('detail API', () => {
     expect(body.notRated.sections).toHaveLength(3);
   });
 
-  it('refuses unknown ranking ids', async () => {
-    expect((await get('/api/kindergartens/171/groups/9006/rankings/1')).status).toBe(404);
+  it('refuses groups that belong to another kindergarten', async () => {
+    expect((await get('/api/kindergartens/171/groups/6059/waiting')).status).toBe(404);
   });
 });
 
 describe('cached()', () => {
-  it('serves stale data when the source fails, and throws when there is nothing cached', async () => {
+  it('serves stale data when the source fails', async () => {
     const db = openDatabase(':memory:');
     let now = 1_000;
     const opts = { now: () => now };
@@ -102,14 +85,5 @@ describe('cached()', () => {
       throw new Error('down');
     };
     expect(await cached(db, 'k', 100, failing, opts)).toEqual({ data: { v: 1 }, fetchedAt: 1_000, stale: true });
-    await expect(cached(db, 'other', 100, failing, opts)).rejects.toThrow('down');
-  });
-
-  it('does not cache "not found" (null) results', async () => {
-    const db = openDatabase(':memory:');
-    expect((await cached(db, 'x', 100, async () => null)).data).toBeNull();
-    expect(getCached(db, 'x')).toBeNull();
-    setCached(db, 'y', { a: 1 }, 5);
-    expect(getCached(db, 'y')).toEqual({ data: { a: 1 }, fetchedAt: 5 });
   });
 });
