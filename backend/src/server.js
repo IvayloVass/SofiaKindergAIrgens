@@ -4,6 +4,9 @@ import { extname, join, normalize as normalizePath, resolve } from 'node:path';
 import { getKindergartens, getMeta, getRegions } from '@kg/database';
 import { SOURCE_PAGE_URL } from './config.js';
 import { NotFoundError, getDetail, getRanking, getWaiting } from './kindergartenService.js';
+import { buildReport, fileDate } from './report.js';
+import { toPdf } from './reportPdf.js';
+import { toXlsx } from './reportXlsx.js';
 
 const MIME = {
   '.html': 'text/html; charset=utf-8',
@@ -51,6 +54,34 @@ const DETAIL_ROUTES = [
   [/^\/api\/kindergartens\/(\d+)\/groups\/(\d+)\/rankings\/(\d+)$/, (db, [id, g, r], o) => getRanking(db, id, g, r, o)],
 ];
 
+const SOURCE_DOWN = 'Източникът на данни (kg.sofia.bg) не отговаря. Опитайте отново след малко.';
+
+// Downloadable report for one kindergarten: /api/kindergartens/:id/report.(xlsx|pdf)
+const REPORT_ROUTE = /^\/api\/kindergartens\/(\d+)\/report\.(xlsx|pdf)$/;
+const REPORT_FORMATS = {
+  xlsx: { type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet', write: toXlsx },
+  pdf: { type: 'application/pdf', write: toPdf },
+};
+
+/** RFC 5987 encoding for the UTF-8 file name (encodeURIComponent leaves a few reserved characters). */
+const encodeFilename = (name) =>
+  encodeURIComponent(name).replace(/['()*]/g, (c) => `%${c.charCodeAt(0).toString(16).toUpperCase()}`);
+
+async function sendReport(db, res, id, ext, options) {
+  const format = REPORT_FORMATS[ext];
+  const report = await buildReport(db, id, options);
+  const body = await format.write(report);
+  const date = fileDate(report.generatedAt);
+  const name = report.kindergarten.shortName.replace(/[\\/:*?"<>|]+/g, ' ').trim();
+  res.writeHead(200, {
+    'Content-Type': format.type,
+    'Content-Length': body.length,
+    'Content-Disposition': `attachment; filename="kindergarten-${report.kindergarten.id}-${date}.${ext}"; filename*=UTF-8''${encodeFilename(`${name} - класиране ${date}.${ext}`)}`,
+    'Cache-Control': 'no-store',
+  });
+  res.end(body);
+}
+
 async function handleApi(db, url, res, options) {
   switch (url.pathname) {
     case '/api/health':
@@ -66,6 +97,17 @@ async function handleApi(db, url, res, options) {
     default:
   }
 
+  const report = REPORT_ROUTE.exec(url.pathname);
+  if (report) {
+    try {
+      return await sendReport(db, res, report[1], report[2], options);
+    } catch (err) {
+      if (err instanceof NotFoundError) return sendJson(res, 404, { error: 'Not found' });
+      console.error(`${url.pathname}: ${err.message}`);
+      return sendJson(res, 502, { error: SOURCE_DOWN });
+    }
+  }
+
   for (const [pattern, handler] of DETAIL_ROUTES) {
     const match = pattern.exec(url.pathname);
     if (!match) continue;
@@ -74,7 +116,7 @@ async function handleApi(db, url, res, options) {
     } catch (err) {
       if (err instanceof NotFoundError) return sendJson(res, 404, { error: 'Not found' });
       console.error(`${url.pathname}: ${err.message}`);
-      return sendJson(res, 502, { error: 'Източникът на данни (kg.sofia.bg) не отговаря. Опитайте отново след малко.' });
+      return sendJson(res, 502, { error: SOURCE_DOWN });
     }
   }
   return sendJson(res, 404, { error: 'Not found' });

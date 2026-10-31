@@ -16,7 +16,8 @@ The data comes from the public portal [kg.sofia.bg](https://kg.sofia.bg/#/kinder
   - **rankings ("класиране")** for each group and ranking date: ranked, not ranked and pre-ranking lists, the enrolment period and the lowest ranked points,
   - the **waiting list** with a points chart,
   - "find my child" by application number (highlights the child and shows their place),
-  - the kindergarten's information for parents.
+  - the kindergarten's information for parents,
+  - **download ratings and statistics as Excel or PDF**: one file with every group of the kindergarten — places per group and quota, the waiting list and the latest ranking (ranked and not ranked children), with totals. Available only from a kindergarten's own page.
 
 ## Requirements
 
@@ -46,7 +47,7 @@ An npm workspaces monorepo with four modules:
 
 ```
 database/   SQLite schema and data access (built-in node:sqlite, no dependencies)
-backend/    Node HTTP API + sync job (built-in node:http and fetch, no dependencies)
+backend/    Node HTTP API + sync job (built-in node:http and fetch; exceljs, pdfkit and DejaVu fonts for the reports)
 frontend/   React + Bootstrap + Chart.js SPA, built with Vite (pages/, components/, a tiny router in router.jsx)
 tests/      Vitest suites for each module, plus fixtures captured from the real source
 scripts/    dev.js runs backend and frontend side by side
@@ -62,6 +63,7 @@ The source API blocks requests from other websites (CORS), so the browser can't 
 4. refreshes every 24 hours, and keeps serving the last good data if the source is down (`backend/src/sync.js`),
 5. fetches detail pages, waiting lists and rankings on demand, caches them in SQLite (6h / 1h / 6h) and serves the cached copy if the source is down (`backend/src/kindergartenService.js`, `backend/src/cache.js`). Group and ranking ids are checked against the kindergarten, so the API can't be used as an open proxy.
 6. cleans the "info for parents" HTML with a small allow-list sanitizer (`backend/src/sanitize.js`) before it reaches the browser.
+7. builds the downloadable reports: `backend/src/report.js` gathers all groups (reusing the cached data above; a list the source can't deliver is marked "not available" instead of failing the file), `reportXlsx.js` and `reportPdf.js` write the Excel and PDF files. The PDF embeds DejaVu Sans because the standard PDF fonts have no Cyrillic.
 
 ### API
 
@@ -73,6 +75,8 @@ The source API blocks requests from other websites (CORS), so the browser can't 
 | `/api/kindergartens/:id` |
 | `/api/kindergartens/:id/groups/:groupId/waiting` |
 | `/api/kindergartens/:id/groups/:groupId/rankings/:ratingId` |
+| `/api/kindergartens/:id/report.xlsx` |
+| `/api/kindergartens/:id/report.pdf` |
 | `/api/health` |
 
 ### Source endpoints used
